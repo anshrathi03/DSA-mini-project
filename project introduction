@@ -1,0 +1,10 @@
+project introduction
+
+This project is a simple implementation of an Online Voting System using Data Structures in C.
+
+The main purpose of this project is to:
+
+Allow users to vote for candidates
+Ensure each voter can vote only once
+Count votes efficiently
+Display results and declare a winner
