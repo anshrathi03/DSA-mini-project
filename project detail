@@ -1,0 +1,70 @@
+ 1. Objective of the Project
+To understand how data structures are used in real-life applications
+To implement a secure and fair voting system
+To practice searching, storing, and updating data efficiently
+
+ 2. Concepts Used (VERY IMPORTANT)
+🔹 1. Arrays
+Used to store:
+Candidates
+Voter IDs
+ Easy to manage multiple data items
+🔹 2. Structures (struct)
+Combines:
+Candidate name
+Vote count
+ Makes data organized
+🔹 3. String Handling
+strcmp() → compare names
+strcpy() → copy data
+🔹 4. Searching Algorithm
+Linear search is used:
+To find candidate
+To check duplicate voters
+🔹 5. Counting Technique
+Votes are counted by incrementing values
+
+ 3. Working of the System
+ 
+ The program works in the following steps:
+User enters number of candidates
+Candidate names are stored
+Menu is displayed:
+Vote
+Show Results
+Exit
+When voting:
+Voter enters ID
+System checks if already voted
+If not → vote is recorded
+Results show:
+Total votes
+Winner
+
+ 4. Features of the Project
+
+✔ Simple and user-friendly interface
+✔ Prevents duplicate voting
+✔ Stores multiple candidates
+✔ Displays real-time results
+✔ Automatically finds winner
+
+ 5. Security Features
+One voter → one vote
+Duplicate checking using voter ID
+Invalid candidate handling
+
+ 6. Advantages
+Easy to understand and implement
+Demonstrates real-world application of DSA
+Efficient for small-scale voting
+Helps learn data handling
+
+
+ 7. Future Improvements
+
+Add login system with password
+Use database (MySQL) for storage
+Create GUI (Graphical Interface)
+Convert into web-based system
+Use advanced DSA like hashing
