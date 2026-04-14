@@ -9,71 +9,88 @@ struct Candidate {
 };
 
 int main() {
-    struct Candidate candidates[MAX];
+    struct Candidate candidates[3] = {
+        {"ansh", 0},
+        {"akhil", 0},
+        {"nitin", 0}
+    };
+
     char voters[MAX][50];
-
-    int n, voterCount = 0;
-
-    printf("Enter number of candidates: ");
-    scanf("%d", &n);
-
-    // Input candidates
-    for(int i = 0; i < n; i++) {
-        printf("Enter candidate name: ");
-        scanf("%s", candidates[i].name);
-        candidates[i].votes = 0;
-    }
+    int voterCount = 0;
+    int n = 3;
 
     int choice;
-    char voterID[50], voteTo[50];
+    char voterName[50], voteTo[50];
 
     do {
-        printf("\n1. Vote\n2. Show Results\n3. Exit\nEnter choice: ");
+        printf("\n1. Vote\n2. Show Results\n3. Exit\n");
+        printf("Enter choice: ");
         scanf("%d", &choice);
 
         switch(choice) {
-            case 1:
-                printf("Enter voter ID: ");
-                scanf("%s", voterID);
 
-                // Check duplicate voter
+            case 1: {
+                printf("Enter your name: ");
+                scanf("%s", voterName);
+
                 int alreadyVoted = 0;
-                for(int i = 0; i < voterCount; i++) {
-                    if(strcmp(voters[i], voterID) == 0) {
+
+                // Check if voter name matches candidate name (security)
+                for(int i = 0; i < n; i++) {
+                    if(strcmp(voterName, candidates[i].name) == 0) {
+                        printf("Invalid! You cannot use candidate name.\n");
                         alreadyVoted = 1;
                         break;
                     }
                 }
 
-                if(alreadyVoted) {
-                    printf("You have already voted!\n");
-                } else {
-                    printf("Enter candidate name: ");
-                    scanf("%s", voteTo);
-
-                    int found = 0;
-                    for(int i = 0; i < n; i++) {
-                        if(strcmp(candidates[i].name, voteTo) == 0) {
-                            candidates[i].votes++;
-                            strcpy(voters[voterCount], voterID);
-                            voterCount++;
-                            found = 1;
-                            printf("Vote cast successfully!\n");
-                            break;
-                        }
-                    }
-
-                    if(!found) {
-                        printf("Invalid candidate!\n");
+                // Check duplicate vote
+                for(int i = 0; i < voterCount && !alreadyVoted; i++) {
+                    if(strcmp(voters[i], voterName) == 0) {
+                        printf("You have already voted!\n");
+                        alreadyVoted = 1;
+                        break;
                     }
                 }
-                break;
 
-            case 2:
+                if(alreadyVoted) break;
+
+                // Show candidate list
+                printf("\nAvailable Candidates:\n");
+                for(int i = 0; i < n; i++) {
+                    printf("- %s\n", candidates[i].name);
+                }
+
+                printf("Enter candidate name to vote: ");
+                scanf("%s", voteTo);
+
+                int found = 0;
+
+                for(int i = 0; i < n; i++) {
+                    if(strcmp(candidates[i].name, voteTo) == 0) {
+                        candidates[i].votes++;
+
+                        strcpy(voters[voterCount], voterName);
+                        voterCount++;
+
+                        found = 1;
+                        printf("Vote cast successfully!\n");
+                        break;
+                    }
+                }
+
+                if(!found) {
+                    printf("Invalid candidate!\n");
+                }
+
+                break;
+            }
+
+            case 2: {
                 printf("\n--- Results ---\n");
 
-                int maxVotes = 0;
-                char winner[50];
+                int maxVotes = -1;
+                char winner[50] = "";
 
                 for(int i = 0; i < n; i++) {
                     printf("%s : %d votes\n", candidates[i].name, candidates[i].votes);
@@ -84,8 +101,13 @@ int main() {
                     }
                 }
 
-                printf("Winner: %s\n", winner);
+                if(maxVotes >= 0)
+                    printf("Winner: %s\n", winner);
+                else
+                    printf("No votes yet!\n");
+
                 break;
+            }
 
             case 3:
                 printf("Exiting...\n");
