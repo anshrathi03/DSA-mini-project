@@ -1,3 +1,9 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    // Write C code here
+    printf("Try programiz.pro");
 #include <stdio.h>
 #include <string.h>
 
@@ -39,8 +45,6 @@ int main() {
                 for(int i = 0; i < n; i++) {
                     if(strcmp(voterName, candidates[i].name) == 0) {
                         printf("Invalid! You cannot use candidate name.\n");
-                        printf("Chal nikal bahan k lund,Chodu,bhosdiwale");
-
                         alreadyVoted = 1;
                         break;
                     }
@@ -121,5 +125,7 @@ int main() {
 
     } while(choice != 3);
 
+    return 0;
+}
     return 0;
 }
