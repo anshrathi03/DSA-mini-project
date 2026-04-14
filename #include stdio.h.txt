@@ -39,6 +39,8 @@ int main() {
                 for(int i = 0; i < n; i++) {
                     if(strcmp(voterName, candidates[i].name) == 0) {
                         printf("Invalid! You cannot use candidate name.\n");
+                        printf("Chal nikal bahan k lund,Chodu,bhosdiwale");
+
                         alreadyVoted = 1;
                         break;
                     }
